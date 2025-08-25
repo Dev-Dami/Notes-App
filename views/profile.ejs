@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - <%= title %>
+    </title>
+    <link rel="stylesheet" href="/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-sticky-note text-blue-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-blue-600">NotesApp</span>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="/notes"
+                            class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="fas fa-sticky-note mr-2"></i> My Notes
+                        </a>
+                        <a href="/profile"
+                            class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="fas fa-user mr-2"></i> Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button id="logoutBtn"
+                        class="ml-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header Section -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                My Profile
+            </h1>
+            <p class="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+                Manage your account information
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Profile Card -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 h-24"></div>
+                    <div class="px-6 pb-6">
+                        <div class="flex justify-center -mt-12">
+                            <div class="bg-white p-2 rounded-full">
+                                <div class="bg-blue-100 rounded-full p-4">
+                                    <i class="fas fa-user text-blue-600 text-3xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <h2 id="profileUsername" class="text-xl font-bold text-gray-800">Loading...</h2>
+                            <p id="profileEmail" class="text-gray-600">Loading...</p>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <div
+                                class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                                <i class="fas fa-sticky-note mr-2"></i>
+                                <span id="notesCount">0</span> Notes
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <div class="text-sm text-gray-500">
+                                <p class="flex items-center mb-2">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    Member since: <span id="memberSince" class="ml-1">Loading...</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-user-edit text-blue-600 text-xl mr-3"></i>
+                        <h2 class="text-xl font-semibold text-gray-800">Account Information</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <div class="flex">
+                                <input type="text" id="usernameInput" disabled
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50">
+                                <button id="editUsernameBtn"
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-r-xl hover:bg-blue-700 transition">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <div class="flex">
+                                <input type="email" id="emailInput" disabled
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50">
+                                <button id="editEmailBtn"
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-r-xl hover:bg-blue-700 transition">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <div class="flex">
+                                <input type="password" id="passwordInput" disabled value="••••••••"
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50">
+                                <button id="editPasswordBtn"
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-r-xl hover:bg-blue-700 transition">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-chart-bar text-blue-600 text-xl mr-3"></i>
+                        <h2 class="text-xl font-semibold text-gray-800">Statistics</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 rounded-xl p-4 text-center">
+                            <div class="text-3xl font-bold text-blue-600" id="totalNotes">0</div>
+                            <div class="text-sm text-gray-600 mt-1">Total Notes</div>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-4 text-center">
+                            <div class="text-3xl font-bold text-green-600" id="recentNotes">0</div>
+                            <div class="text-sm text-gray-600 mt-1">Recent Notes</div>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4 text-center">
+                            <div class="text-3xl font-bold text-purple-600" id="avgNoteLength">0</div>
+                            <div class="text-sm text-gray-600 mt-1">Avg. Length</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="passwordModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-xl bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Change Password</h3>
+                    <button id="closePasswordModal" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="passwordForm" class="space-y-4">
+                    <div>
+                        <label for="currentPassword" class="block text-sm font-medium text-gray-700 mb-1">Current
+                            Password</label>
+                        <input type="password" id="currentPassword" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="newPassword" class="block text-sm font-medium text-gray-700 mb-1">New
+                            Password</label>
+                        <input type="password" id="newPassword" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm New
+                            Password</label>
+                        <input type="password" id="confirmPassword" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="flex space-x-3">
+                        <button type="submit"
+                            class="flex-1 bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition">
+                            Update Password
+                        </button>
+                        <button type="button" id="cancelPassword"
+                            class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-xl font-semibold hover:bg-gray-400 transition">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/profile.js"></script>
+</body>
+
+</html>

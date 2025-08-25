@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes - <%= title %>
+    </title>
+    <link rel="stylesheet" href="/output.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans">
+    <div class="container mx-auto p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-blue-600">My Notes</h1>
+            <div class="space-x-2">
+                <a href="/profile"
+                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Profile</a>
+                <button id="logoutBtn"
+                    class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Logout</button>
+            </div>
+        </div>
+
+        <!-- Add Note Form -->
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Add New Note</h2>
+            <form id="newNoteForm" class="space-y-4">
+                <input type="text" id="title" placeholder="Title" required
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <textarea id="content" placeholder="Content" rows="4" required
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                <button type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Add Note</button>
+            </form>
+        </div>
+
+        <!-- Notes List -->
+        <div id="notesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Notes will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="text-center py-12 hidden">
+            <p class="text-gray-500">No notes yet. Create your first note above!</p>
+        </div>
+    </div>
+
+    <script src="/notes.js"></script>
+</body>
+
+</html>

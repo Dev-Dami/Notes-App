@@ -33,10 +33,21 @@ app.get("/login", (req, res) => {
   res.render("login", { title: "Login - Notes App" });
 });
 
+// Profile page route (must come before API routes)
+app.get("/profile", (req, res) => {
+  res.render("profile", { title: "My Profile - Notes App" });
+});
+
+// API routes
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
-app.use("/profile", profileRoutes);
-app.use("/notes", notesRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/notes", notesRoutes);
+
+// Notes page route (must come after API routes)
+app.get("/notes", (req, res) => {
+  res.render("notes", { title: "My Notes - Notes App" });
+});
 
 mongoose
   .connect(process.env.MONGO_URI, {
