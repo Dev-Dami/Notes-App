@@ -40,7 +40,7 @@ router.put("/", authMiddleware, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // check if email is already in use
+    // check if email is in use
     if (email && email !== user.email) {
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -54,7 +54,7 @@ router.put("/", authMiddleware, async (req, res) => {
 
     await user.save();
 
-    // return updated user without password
+    // return updated user
     const updatedUser = await User.findById(userId).select("-password");
     res.json({ user: updatedUser, message: "Profile updated successfully" });
   } catch (err) {
@@ -69,7 +69,6 @@ router.put("/password", authMiddleware, async (req, res) => {
     const { currentPassword, newPassword } = req.body;
     const userId = req.user.id;
 
-    // Find the user with password
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
