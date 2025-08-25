@@ -108,15 +108,26 @@ function displayNotes(notes) {
     btn.addEventListener("click", () => {
       const id = btn.dataset.id;
       const noteEl = document.querySelector(`[data-id="${id}"]`);
-      const titleEl = noteEl.querySelector(".note-title");
-      const contentEl = noteEl.querySelector(".note-content");
 
-      // Check if in edit mode
-      if (btn.textContent === "Save") {
-        // Save the changes
-        saveNote(id, titleEl.textContent, contentEl.textContent);
+      // If already in edit mode, collect values from the input/textarea and save
+      if (btn.textContent.trim() === "Save") {
+        const titleInput = noteEl.querySelector('input[type="text"]');
+        const contentTextarea = noteEl.querySelector("textarea");
+
+        const newTitle = titleInput ? titleInput.value.trim() : "";
+        const newContent = contentTextarea ? contentTextarea.value.trim() : "";
+
+        if (!newTitle || !newContent) {
+          alert("Title and content cannot be empty");
+          return;
+        }
+
+        // Persist changes (UI will refresh via fetchNotes on success)
+        saveNote(id, newTitle, newContent);
       } else {
-        // Enter edit mode
+        // Enter edit mode: replace title/content with editable fields
+        const titleEl = noteEl.querySelector(".note-title");
+        const contentEl = noteEl.querySelector(".note-content");
         makeEditable(titleEl, contentEl, btn);
       }
     });
